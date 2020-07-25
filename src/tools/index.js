@@ -1,0 +1,1 @@
+export const formatMsDigits = ms => ms < 10 ? '0' + ms : '' + ms
