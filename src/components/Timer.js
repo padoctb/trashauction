@@ -50,14 +50,14 @@ const interval = 10;
 const Timer = ({ initialTime }) => {
   const [isRunning, setIsRunning] = useState(false);
   const [prevTime, setPrevTime] = useState(null);
-  const [currentMs, setTimeInMilliseconds] = useState(initialTime);
-  const [time, setTime] = useState(formatTime(initialTime));
+  const [currentMs, setCurrentMs] = useState(initialTime);
+  const [timeleft, setTimeleft] = useState(formatTime(initialTime));
 
   const changeTime = (ms) => {
     const newTime = formatTime(ms);
     setPrevTime(Date.now());
-    setTimeInMilliseconds(ms);
-    setTime(newTime);
+    setCurrentMs(ms);
+    setTimeleft(newTime);
   };
 
   useInterval(
@@ -110,7 +110,7 @@ const Timer = ({ initialTime }) => {
           />
         </div>
         <TimeleftText>
-          {time && `${time.minutes}:${time.seconds}:${time.milliseconds}`}
+          {timeleft && `${timeleft.minutes}:${timeleft.seconds}:${timeleft.milliseconds}`}
         </TimeleftText>
         <div>
           <TimerBtn onClick={stopTimer} className="timer-btn" alt="stop" src={stopIcon} />

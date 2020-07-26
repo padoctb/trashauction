@@ -4,8 +4,10 @@ import Timer from './Timer'
 
 const StyledHeader = styled.header`
   font-size: 30px;
-  display: flex;
   justify-content: flex-end;
+  position: fixed;
+  right: 0;
+  top: 0;
 `;  
 
 const Header = () => {
