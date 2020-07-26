@@ -61,7 +61,11 @@ const LotsList = ({lots, changeLots, setIsChangingLot}) => {
 
   const deleteLot = removedLotData => {
     if(lots.length === 1) return;
-    changeLots(prevLots => [...prevLots].filter(lot => lot.id !== removedLotData.id))
+    setIsChangingLot(true)
+    changeLots(prevLots => {
+      setTimeout(() => setIsChangingLot(false), 0)
+      return [...prevLots].filter(lot => lot.id !== removedLotData.id)
+    })
   }
 
   return (
