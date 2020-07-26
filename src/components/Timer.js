@@ -13,7 +13,6 @@ const TimerWrapper = styled.div`
   display: flex;
   font-size: 62px;
   flex-direction: column;
-  margin-top: 16px;
   &:hover .timer-btn {
     opacity: 0.7;
   }

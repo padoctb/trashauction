@@ -58,26 +58,30 @@ const RemoveBtn = styled.img`
   }
 `;
 
-const Lot = ({ lotData: { name, id, price }, pos, updateLot, deleteLot, lotData }) => {
+const Lot = ({ lotData: { name, id, price }, pos, updateLot, deleteLot, lotData, setIsChangingLot }) => {
   const [nameValue, setName] = useState(name);
   const [priceValue, setPrice] = useState(price);
   const [addPriceValue, setAddPrice] = useState('');
 
   const onNameChange = (e) => {
+    setIsChangingLot(true)
     setName(e.target.value);
   };
 
   const onPriceChange = (e) => {
+    setIsChangingLot(true)
     if(isNaN(e.target.value)) return;
     setPrice(e.target.value);
   };
 
   const onAddPriceChange = (e) => {
+    setIsChangingLot(true)
     if(isNaN(e.target.value)) return;
     setAddPrice(e.target.value);
   };
 
   const onBlurHandler = () => {
+    setIsChangingLot(false)
     const updatedPrice = Number(priceValue) + Number(addPriceValue);
     setPrice(updatedPrice);
     setAddPrice('');

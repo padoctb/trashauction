@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import Lot from './Lot';
 import { generateId } from '../tools';
@@ -35,16 +35,7 @@ const AddNewLotBtn = styled.div`
   }
 `;
 
-const LotsList = () => {
-  const [lots, changeLots] = useState([
-    {
-      name: '',
-      id: generateId(),
-      price: 0,
-    },
-  ]);
-
-  console.log(lots);
+const LotsList = ({lots, changeLots, setIsChangingLot}) => {
 
   const addNewLot = () => {
     changeLots((prevLots) => {
@@ -77,7 +68,7 @@ const LotsList = () => {
     <Wrapper>
       <List>
         {lots.map((lot, i) => (
-          <Lot deleteLot={deleteLot} updateLot={updateLot} key={lot.id} pos={++i} lotData={lot} />
+          <Lot setIsChangingLot={setIsChangingLot} deleteLot={deleteLot} updateLot={updateLot} key={lot.id} pos={++i} lotData={lot} />
         ))}
       </List>
       <NewLotWrapper>
