@@ -11,7 +11,7 @@ const StyledHeader = styled.header`
 const Header = () => {
   return (
     <StyledHeader>
-      <Timer/>
+      <Timer initialTime={1500000}/>
     </StyledHeader>
   );
 };

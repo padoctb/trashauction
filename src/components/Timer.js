@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import Countdown from 'react-countdown';
-import { formatMsDigits } from '../tools';
+import { useInterval } from '../tools/hooks';
+import { formatTime } from '../tools';
 import playIcon from '../img/icons/play.svg';
 import stopIcon from '../img/icons/stop.svg';
 import timeUp from '../img/icons/timeup.svg';
 import timeDown from '../img/icons/timedown.svg';
 import timeUpx2 from '../img/icons/doubleup.svg';
+import pauseIcon from '../img/icons/pause.svg';
 
 const TimerWrapper = styled.div`
   display: flex;
@@ -44,41 +45,95 @@ const TimerBtn = styled.img`
   }
 `;
 
-const TimerContent = ({ time }) => {
-  const milliseconds = formatMsDigits(Math.floor(time.milliseconds / 10));
-  const timeleft = `${time.formatted.minutes}:${time.formatted.seconds}:${milliseconds}`;
+const interval = 10;
+
+const Timer = ({ initialTime }) => {
+  const [isRunning, setIsRunning] = useState(false);
+  const [prevTime, setPrevTime] = useState(null);
+  const [currentMs, setTimeInMilliseconds] = useState(initialTime);
+  const [time, setTime] = useState(formatTime(initialTime));
+
+  const changeTime = (ms) => {
+    const newTime = formatTime(ms);
+    setPrevTime(Date.now());
+    setTimeInMilliseconds(ms);
+    setTime(newTime);
+  };
+
+  useInterval(
+    () => {
+      let prev = prevTime ? prevTime : Date.now();
+      let diffTime = Date.now() - prev;
+      let newMs = currentMs - diffTime;
+
+      if (newMs <= 10) {
+        stopTimer();
+      } else changeTime(newMs);
+    },
+    isRunning ? interval : null,
+  );
+
+  const handleTime = () => {
+    if (!currentMs) return;
+    setIsRunning(!isRunning);
+    setPrevTime(null);
+  };
+
+  const increaseMinute = (e) => {
+    const increaseNumber = Number(e.target.getAttribute('data-increase-number'));
+    const newMs = currentMs + 60000 * increaseNumber;
+
+    changeTime(newMs);
+  };
+
+  const decreaseMinute = () => {
+    if (currentMs <= 60000) return;
+    const newMs = currentMs - 60000;
+
+    changeTime(newMs);
+  };
+
+  const stopTimer = () => {
+    changeTime(0);
+    setIsRunning(false);
+  };
 
   return (
     <TimerWrapper>
       <TimeleftWrapper>
         <div>
-          <TimerBtn className="timer-btn" alt="play" src={playIcon} />
+          <TimerBtn
+            onClick={handleTime}
+            className="timer-btn"
+            alt="play"
+            src={!isRunning ? playIcon : pauseIcon}
+          />
         </div>
-        <TimeleftText>{timeleft}</TimeleftText>
+        <TimeleftText>
+          {time && `${time.minutes}:${time.seconds}:${time.milliseconds}`}
+        </TimeleftText>
         <div>
-          <TimerBtn className="timer-btn" alt="stop" src={stopIcon} />
+          <TimerBtn onClick={stopTimer} className="timer-btn" alt="stop" src={stopIcon} />
         </div>
       </TimeleftWrapper>
       <TimeleftControl>
-        <TimerBtn className="timer-btn" alt="timeup" src={timeUp} />
-        <TimerBtn className="timer-btn" alt="timeupx2" src={timeUpx2} />
-        <TimerBtn className="timer-btn" alt="timedown" src={timeDown} />
+        <TimerBtn
+          onClick={increaseMinute}
+          data-increase-number="1"
+          className="timer-btn"
+          alt="timeup"
+          src={timeUp}
+        />
+        <TimerBtn
+          onClick={increaseMinute}
+          data-increase-number="2"
+          className="timer-btn"
+          alt="timeupx2"
+          src={timeUpx2}
+        />
+        <TimerBtn onClick={decreaseMinute} className="timer-btn" alt="timedown" src={timeDown} />
       </TimeleftControl>
     </TimerWrapper>
-  );
-};
-
-const Timer = () => {
-  const [timeleft, changeTimeleft] = useState(Date.now() + 1500000);
-
-  return (
-    <Countdown
-      changeTimeleft={changeTimeleft}
-      precision={3}
-      intervalDelay={0}
-      renderer={(props) => <TimerContent time={props} />}
-      date={timeleft}
-    />
   );
 };
 

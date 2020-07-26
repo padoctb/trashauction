@@ -1,1 +1,17 @@
-export const formatMsDigits = ms => ms < 10 ? '0' + ms : '' + ms
+const formatMsDigits = ms => ms < 10 ? '0' + ms : '' + ms
+
+export const formatTime = time => {
+  let milliseconds = parseInt(time % 1000),
+    seconds = Math.floor((time / 1000) % 60),
+    minutes = Math.floor(time / (1000 * 60));
+
+  minutes = minutes < 10 ? "0" + minutes : minutes;
+  seconds = seconds < 10 ? "0" + seconds : seconds;
+  milliseconds = formatMsDigits(Math.floor(milliseconds / 10))
+
+  return {
+    milliseconds,
+    seconds,
+    minutes
+  };
+};
