@@ -1,7 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import Lot from './Lot';
 import { generateId } from '../tools';
+import '../style/styles.css';
 
 const Wrapper = styled.div`
   display: flex;
@@ -35,8 +37,7 @@ const AddNewLotBtn = styled.div`
   }
 `;
 
-const LotsList = ({lots, changeLots, setIsChangingLot}) => {
-
+const LotsList = ({ lots, changeLots, setIsChangingLot }) => {
   const addNewLot = () => {
     changeLots((prevLots) => {
       const newLots = [...prevLots];
@@ -55,25 +56,39 @@ const LotsList = ({lots, changeLots, setIsChangingLot}) => {
         return lot;
       });
 
-      return newLots.sort((a,b) => b.price - a.price);
+      return newLots.sort((a, b) => b.price - a.price);
     });
   };
 
-  const deleteLot = removedLotData => {
-    if(lots.length === 1) return;
-    setIsChangingLot(true)
-    changeLots(prevLots => {
-      setTimeout(() => setIsChangingLot(false), 0)
-      return [...prevLots].filter(lot => lot.id !== removedLotData.id)
-    })
-  }
+  const deleteLot = (removedLotData) => {
+    if (lots.length === 1) return;
+    setIsChangingLot(true);
+    changeLots((prevLots) => {
+      setTimeout(() => setIsChangingLot(false), 0);
+      return [...prevLots].filter((lot) => lot.id !== removedLotData.id);
+    });
+  };
 
   return (
     <Wrapper>
       <List>
-        {lots.map((lot, i) => (
-          <Lot setIsChangingLot={setIsChangingLot} deleteLot={deleteLot} updateLot={updateLot} key={lot.id} pos={++i} lotData={lot} />
-        ))}
+        <TransitionGroup>
+          {lots.map((lot, i) => (
+            <CSSTransition key={lot.id} timeout={{
+              enter: 300,
+              exit: 0
+            }} classNames="item">
+              <Lot
+                setIsChangingLot={setIsChangingLot}
+                deleteLot={deleteLot}
+                updateLot={updateLot}
+                key={lot.id}
+                pos={++i}
+                lotData={lot}
+              />
+            </CSSTransition>
+          ))}
+        </TransitionGroup>
       </List>
       <NewLotWrapper>
         <AddNewLotBtn onClick={addNewLot}>+</AddNewLotBtn>

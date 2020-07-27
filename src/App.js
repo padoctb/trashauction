@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 import bg from './img/bg.jpg';
+import tickerIcon from './img/icons/ticker.svg'
 import Header from './components/Header';
 import LotsList from './components/LotsList';
 import TopTicker from './components/TopTicker'
@@ -19,6 +20,24 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
+const ToggleTicker = styled.img`
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  bottom: 6px;
+  right: 10px;
+  opacity: .3;
+  cursor: pointer;
+  transition: .2s ease;
+  &:hover {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+  &:active {
+    transform: scale(1);
+  }
+`
+
 const App = () => {
   const [lots, changeLots] = useState([
     {
@@ -31,12 +50,15 @@ const App = () => {
   const [isChangingLot, setIsChangingLot] = useState(false);
   const [isShowTicker, setIsShowTicker] = useState(true)
 
+  const toggleTicker = () => setIsShowTicker(prevState => !prevState);
+
   return (
     <>
       <GlobalStyle />
       {isShowTicker && <TopTicker isChangingLot={isChangingLot} lots={lots}/>}
       <Header setIsShowTicker={setIsShowTicker}/>
       <LotsList setIsChangingLot={setIsChangingLot} changeLots={changeLots} lots={lots} />
+      <ToggleTicker onClick={toggleTicker} alt='ticker' src={tickerIcon}/>
     </>
   );
 };

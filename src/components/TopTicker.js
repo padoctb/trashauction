@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import Ticker from 'react-ticker';
 
@@ -61,7 +61,7 @@ const TopTicker = ({ lots, isChangingLot }) => {
       {(
         <TickerWrapper>
           {!isChangingLot && (
-            <Ticker offset={600} speed={14} mode="chain">
+            <Ticker offset={600} speed={15} mode="chain">
               {() => (
                 <TopTicket>
                   {tickerContent.length > 1 &&
