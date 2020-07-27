@@ -29,6 +29,7 @@ const TickerWrapper = styled.div`
   left: 0;
   background-color: rgba(0, 0, 0, 0.5);
   height: 36px;
+  z-index: 10;
 `;
 
 const TopTicker = ({ lots, isChangingLot }) => {

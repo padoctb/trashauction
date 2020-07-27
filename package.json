@@ -1,6 +1,7 @@
 {
   "name": "arrowmarbles",
   "version": "0.1.0",
+  "homepage": "http://padoctb.github.io/trashauction",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
@@ -15,6 +16,8 @@
     "styled-components": "^5.1.1"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
