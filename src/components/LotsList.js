@@ -38,6 +38,7 @@ const AddNewLotBtn = styled.div`
 `;
 
 const LotsList = ({ lots, changeLots, setIsChangingLot }) => {
+
   const addNewLot = () => {
     changeLots((prevLots) => {
       const newLots = [...prevLots];

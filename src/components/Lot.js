@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import deleteIcon from '../img/icons/delete.svg';
 
@@ -46,7 +46,7 @@ const Pos = styled.div`
 
 const RemoveBtn = styled.img`
   margin-left: 10px;
-  opacity: .6;
+  opacity: 0.6;
   cursor: pointer;
   transition: 0.2s ease;
   &:hover {
@@ -58,31 +58,61 @@ const RemoveBtn = styled.img`
   }
 `;
 
-const Lot = ({ lotData: { name, id, price }, pos, updateLot, deleteLot, lotData, setIsChangingLot }) => {
+const Lot = ({
+  lotData: { name, id, price },
+  pos,
+  updateLot,
+  deleteLot,
+  lotData,
+  setIsChangingLot,
+}) => {
+  const priceInputRef = useRef(null);
+  const addPriceInputRef = useRef(null);
+
   const [nameValue, setName] = useState(name);
   const [priceValue, setPrice] = useState(price);
   const [addPriceValue, setAddPrice] = useState('');
 
+  useEffect(() => {
+    priceInputRef.current.addEventListener('focus', (e) => e.target.value === '0' && setPrice(''));
+
+    document.addEventListener('keypress', (e) => {
+      if (e.keyCode === 13 && e.target.hasAttribute('data-input')) e.target.blur();
+    });
+  }, []);
+
+  const animateAddingPrice = () => {
+    const priceInputClasslist = priceInputRef.current.classList;
+    
+    priceInputClasslist.add('added-value-animation');
+    setTimeout(() => priceInputClasslist.remove('added-value-animation'), 500);
+  }
+
   const onNameChange = (e) => {
-    setIsChangingLot(true)
+    setIsChangingLot(true);
     setName(e.target.value);
   };
 
   const onPriceChange = (e) => {
-    setIsChangingLot(true)
-    if(isNaN(e.target.value)) return;
+    setIsChangingLot(true);
+    if (isNaN(e.target.value)) return;
     setPrice(e.target.value);
   };
 
   const onAddPriceChange = (e) => {
-    setIsChangingLot(true)
-    if(isNaN(e.target.value)) return;
+    setIsChangingLot(true);
+    if (isNaN(e.target.value)) return;
     setAddPrice(e.target.value);
   };
 
-  const onBlurHandler = () => {
-    setIsChangingLot(false)
+  const onDelete = () => deleteLot(lotData);
+
+  const updateValues = () => {
+    setIsChangingLot(false);
     const updatedPrice = Number(priceValue) + Number(addPriceValue);
+
+    if (updatedPrice > priceValue) animateAddingPrice()
+
     setPrice(updatedPrice);
     setAddPrice('');
 
@@ -93,27 +123,30 @@ const Lot = ({ lotData: { name, id, price }, pos, updateLot, deleteLot, lotData,
     });
   };
 
-  const onDelete = () => deleteLot(lotData)
-
   return (
     <Wrapper>
       <Pos>{pos}.</Pos>
       <NameInput
-        onBlur={onBlurHandler}
+        data-input
+        onBlur={updateValues}
         onChange={onNameChange}
         spellCheck="false"
         value={nameValue}
         placeholder="Позиция"
       />
       <Input
-        onBlur={onBlurHandler}
+        data-input
+        ref={priceInputRef}
+        onBlur={updateValues}
         onChange={onPriceChange}
         spellCheck="false"
         value={priceValue}
         placeholder="P"
       />
       <Input
-        onBlur={onBlurHandler}
+        data-input
+        ref={addPriceInputRef}
+        onBlur={updateValues}
         onChange={onAddPriceChange}
         spellCheck="false"
         value={addPriceValue}

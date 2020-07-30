@@ -7,3 +7,23 @@
   transition: 300ms ease;
   transform: scale(1);
 }
+
+.added-value-animation {
+  background-color: green;
+  animation: add-value-animation .5s ease-out;
+}
+
+@keyframes add-value-animation {
+  0% {
+    background-color: rgba(102,186,17,.2);
+    transform: scale(1.0);
+  }
+  50% {
+    background-color: rgba(102,186,17,.2);
+    transform: scale(1.10);
+  }
+  to {
+    background-color: transparent;
+    transform: scale(1.0);
+  }
+}

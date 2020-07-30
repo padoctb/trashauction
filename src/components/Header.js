@@ -11,12 +11,16 @@ const StyledHeader = styled.header`
   flex-direction: column;
 `;
 
-const Buyout = styled.div`
+const Buyout = styled.label`
+  display: block;
   opacity: .5;
   font-weight: 500;
   padding-left: 114px;
   padding-top: 14px;
   transform: translateY(10px);
+  &:hover {
+    opacity: .7;
+  }
 `
 
 const BayoutInput = styled.input`
@@ -38,7 +42,7 @@ const Header = () => {
 
   return (
     <StyledHeader>
-      <Buyout>Выкуп: <BayoutInput onChange={onChangeHandler} value={value}/></Buyout>
+      <Buyout htmlFor='bayout'>Выкуп: <BayoutInput id='bayout' onChange={onChangeHandler} value={value}/></Buyout>
       <Timer initialTime={1500000}/>
     </StyledHeader>
   );
