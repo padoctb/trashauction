@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/trashauction/static/css/main.bc258c93.chunk.css",
-    "main.js": "/trashauction/static/js/main.665d1961.chunk.js",
-    "main.js.map": "/trashauction/static/js/main.665d1961.chunk.js.map",
+    "main.js": "/trashauction/static/js/main.94e2127b.chunk.js",
+    "main.js.map": "/trashauction/static/js/main.94e2127b.chunk.js.map",
     "runtime-main.js": "/trashauction/static/js/runtime-main.8a9b7d79.js",
     "runtime-main.js.map": "/trashauction/static/js/runtime-main.8a9b7d79.js.map",
     "static/js/2.fc13c8af.chunk.js": "/trashauction/static/js/2.fc13c8af.chunk.js",
     "static/js/2.fc13c8af.chunk.js.map": "/trashauction/static/js/2.fc13c8af.chunk.js.map",
     "index.html": "/trashauction/index.html",
-    "precache-manifest.790bccbe258dbb6253463f64b25b39f3.js": "/trashauction/precache-manifest.790bccbe258dbb6253463f64b25b39f3.js",
+    "precache-manifest.8acfa811fc2d92133bbe486575fbb3aa.js": "/trashauction/precache-manifest.8acfa811fc2d92133bbe486575fbb3aa.js",
     "service-worker.js": "/trashauction/service-worker.js",
     "static/css/main.bc258c93.chunk.css.map": "/trashauction/static/css/main.bc258c93.chunk.css.map",
     "static/js/2.fc13c8af.chunk.js.LICENSE.txt": "/trashauction/static/js/2.fc13c8af.chunk.js.LICENSE.txt",
@@ -27,6 +27,6 @@
     "static/js/runtime-main.8a9b7d79.js",
     "static/js/2.fc13c8af.chunk.js",
     "static/css/main.bc258c93.chunk.css",
-    "static/js/main.665d1961.chunk.js"
+    "static/js/main.94e2127b.chunk.js"
   ]
 }
