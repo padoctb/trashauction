@@ -1,27 +1,31 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "3f8b741a79d63c63aadd449241f850c6",
+    "revision": "73d98e61446c646b3ce3683354ed5d1d",
     "url": "/trashauction/index.html"
   },
   {
-    "revision": "7d3fb8c3f41bd118029a",
+    "revision": "ff1c11b94df2447327a2",
     "url": "/trashauction/static/css/main.bc258c93.chunk.css"
   },
   {
-    "revision": "cf2e9577a8b08e4275a7",
-    "url": "/trashauction/static/js/2.9bc05d60.chunk.js"
+    "revision": "d9c718c7e77b00213e54",
+    "url": "/trashauction/static/js/2.fc13c8af.chunk.js"
   },
   {
     "revision": "c64c486544348f10a6d6c716950bc223",
-    "url": "/trashauction/static/js/2.9bc05d60.chunk.js.LICENSE.txt"
+    "url": "/trashauction/static/js/2.fc13c8af.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "7d3fb8c3f41bd118029a",
-    "url": "/trashauction/static/js/main.0f70e9e7.chunk.js"
+    "revision": "ff1c11b94df2447327a2",
+    "url": "/trashauction/static/js/main.665d1961.chunk.js"
   },
   {
     "revision": "f093b5cf523383e6b570",
     "url": "/trashauction/static/js/runtime-main.8a9b7d79.js"
+  },
+  {
+    "revision": "ac7c069075516e5d7506fd57435ae93e",
+    "url": "/trashauction/static/media/bg.ac7c0690.svg"
   },
   {
     "revision": "eb10c48523d2acf09f8670d49fcbc852",
