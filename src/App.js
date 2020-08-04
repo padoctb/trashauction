@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
+import ReactTooltip from 'react-tooltip';
 import bg from './img/bg.jpg';
 import tickerIcon from './img/icons/ticker.svg'
 import Header from './components/Header';
@@ -20,13 +21,15 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-const ToggleTicker = styled.img`
+const SettingsButtons = styled.div`
   position: fixed;
-  width: 40px;
-  height: 40px;
   bottom: 6px;
   right: 10px;
-  opacity: .3;
+  display: flex;
+`
+
+const SettingsBtn = styled.img`
+  opacity: ${({isActive}) => isActive ? '.7' : '.3'};
   cursor: pointer;
   transition: .2s ease;
   &:hover {
@@ -36,6 +39,11 @@ const ToggleTicker = styled.img`
   &:active {
     transform: scale(1);
   }
+`
+
+const ToggleTicker = styled(SettingsBtn)`
+  width: 40px;
+  height: 40px;
 `
 
 const App = () => {
@@ -55,10 +63,13 @@ const App = () => {
   return (
     <>
       <GlobalStyle />
+      <ReactTooltip />
       {isShowTicker && <TopTicker isChangingLot={isChangingLot} lots={lots}/>}
       <Header setIsShowTicker={setIsShowTicker}/>
       <LotsList setIsChangingLot={setIsChangingLot} changeLots={changeLots} lots={lots} />
-      <ToggleTicker onClick={toggleTicker} alt='ticker' src={tickerIcon}/>
+      <SettingsButtons>
+        <ToggleTicker data-place='left' data-tip={isShowTicker ? 'Убрать бегущую строку' : 'Показать бегущую строку'} isActive={isShowTicker} onClick={toggleTicker} alt='ticker' src={tickerIcon}/>
+      </SettingsButtons>
     </>
   );
 };
