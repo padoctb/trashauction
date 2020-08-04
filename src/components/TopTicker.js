@@ -14,9 +14,13 @@ const LotWrapper = styled.span`
   }
 `;
 
-const LotPosition = styled.span``;
+const LotPosition = styled.span`
+  font-weight: 600;
+`;
 
-const LotName = styled.span``;
+const LotName = styled.span`
+  font-weight: 400;
+`;
 
 const LotPrice = styled.span`
   padding: 0 4px;
@@ -62,7 +66,7 @@ const TopTicker = ({ lots, isChangingLot }) => {
       {(
         <TickerWrapper>
           {!isChangingLot && (
-            <Ticker offset={600} speed={15} mode="chain">
+            <Ticker offset={600} speed={10} mode="chain">
               {() => (
                 <TopTicket>
                   {tickerContent.length > 1 &&
