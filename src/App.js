@@ -155,12 +155,14 @@ const App = () => {
         <BgChange
           onClick={toggleBgChangeState}
           data-place="left"
+          data-effect='solid'
           data-tip="Сменить фон"
           isActive={isChangeBgActive}
           src={bgIcon}
         />
         <ToggleTicker
           data-place="left"
+          data-effect='solid'
           data-tip={isShowTicker ? 'Убрать бегущую строку' : 'Показать бегущую строку'}
           isActive={isShowTicker}
           onClick={toggleTicker}

@@ -1,7 +1,7 @@
 {
   "name": "arrowmarbles",
   "version": "0.1.0",
-  "homepage": "http://padoctb.github.io/trashauction",
+  "homepage": "http://zhukosvinka.github.io/trashauction",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
