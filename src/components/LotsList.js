@@ -125,7 +125,7 @@ const LotsList = ({ lots, changeLots, setIsChangingLot }) => {
       </List>
       <BottomButtons>
         <AddNewLotBtn onClick={addNewLot}>+</AddNewLotBtn>
-        <DownloadCsvBtn onClick={downloadCSV} data-effect='solid' data-place="top" data-tip='Ипортировать лоты в CSV' src={downloadIcon}/>
+        <DownloadCsvBtn onClick={downloadCSV} data-effect='solid' data-place="top" data-tip='Загрузить список в .CSV' src={downloadIcon}/>
       </BottomButtons>
     </Wrapper>
   );
