@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import downloadIcon from '../img/icons/download.svg';
 import Lot from './Lot';
 import { generateId } from '../tools';
 import '../style/styles.css';
@@ -17,7 +18,25 @@ const List = styled.ul`
   list-style: none;
 `;
 
-const NewLotWrapper = styled.div``;
+const BottomButtons = styled.div``;
+
+const DownloadCsvBtn = styled.img`
+  float: right;
+  float: right;
+  opacity: .4;
+  margin-top: 11px;
+  margin-right: 13px;
+  transition: 0.2s ease;
+  cursor: pointer;
+  &:hover {
+    opacity: 1;
+    transform: scale(1.2);
+    color: #fff;
+  }
+  &:active {
+    transform: scale(0.9);
+  }
+`
 
 const AddNewLotBtn = styled.div`
   width: 50px;
@@ -70,6 +89,19 @@ const LotsList = ({ lots, changeLots, setIsChangingLot }) => {
     });
   };
 
+  const downloadCSV = () => {
+    const lotsNames = lots.map(lot => [lot.name])
+    const lotsInCsv = `data:text/csv;charset=utf-8,${lotsNames.map(lotName => lotName.join(",")).join("\n")}`
+    const encodedUri = encodeURI(lotsInCsv);
+
+    const link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", `auction_lots (${new Date().toLocaleString()}).csv`);
+    document.body.appendChild(link); 
+    link.click();
+    document.body.removeChild(link);
+  }
+
   return (
     <Wrapper>
       <List>
@@ -91,9 +123,10 @@ const LotsList = ({ lots, changeLots, setIsChangingLot }) => {
           ))}
         </TransitionGroup>
       </List>
-      <NewLotWrapper>
+      <BottomButtons>
         <AddNewLotBtn onClick={addNewLot}>+</AddNewLotBtn>
-      </NewLotWrapper>
+        <DownloadCsvBtn onClick={downloadCSV} data-effect='solid' data-place="top" data-tip='Ипортировать лоты в CSV' src={downloadIcon}/>
+      </BottomButtons>
     </Wrapper>
   );
 };
