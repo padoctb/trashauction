@@ -124,6 +124,8 @@ const App = () => {
   const [bgInputValue, setBgInputValue] = useState(bgFromLs);
 
   useEffect(() => {
+    console.log('%cЧувак, ты думал что-то здесь будет? О, нет.', "color: #fff; font-size: 26px;")
+    console.log('%cИсходнный код: https://github.com/zhukosvinka/trashauction/tree/master', "color: #fff; font-size: 26px;")
     document.addEventListener('click', (e) => {
       const isClickedOut =
         e.path.find((element) => element.id === 'settings-wrapper') === undefined;
