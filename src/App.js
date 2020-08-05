@@ -23,6 +23,16 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
+const BlackCover = styled.div`
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: ${({isActive}) => isActive ? 'rgba(0,0,0,.6)' : 'transparent'};
+  top: 0;
+  left: 0;
+  z-index: -1;
+`
+
 const SettingsButtons = styled.div`
   position: fixed;
   bottom: 6px;
@@ -130,11 +140,15 @@ const App = () => {
     setBgInputValue(e.target.value);
   };
 
-  const clearBgInputValue = () => setBgInputValue('');
+  const clearBgInputValue = () => {
+    localStorage.setItem('backgroundUrl', '');
+    setBgInputValue('');
+  }
 
   return (
     <>
       <GlobalStyle bgValue={bgInputValue} />
+      <BlackCover isActive={bgInputValue !== ''}/>
       <ReactTooltip />
       {isShowTicker && <TopTicker isChangingLot={isChangingLot} lots={lots} />}
       <Header setIsShowTicker={setIsShowTicker} />
