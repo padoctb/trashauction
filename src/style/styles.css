@@ -8,8 +8,26 @@
   transform: scale(1);
 }
 
+.destruct-value-animation {
+  animation: destruct-value-animation .5s ease-out;
+}
+
+@keyframes destruct-value-animation {
+  0% {
+    background-color: rgba(167, 41, 41, 0.2);
+    transform: scale(1.0);
+  }
+  50% {
+    background-color: rgba(167, 41, 41, 0.2);
+    transform: scale(1.10);
+  }
+  to {
+    background-color: transparent;
+    transform: scale(1.0);
+  }
+}
+
 .added-value-animation {
-  background-color: green;
   animation: add-value-animation .5s ease-out;
 }
 

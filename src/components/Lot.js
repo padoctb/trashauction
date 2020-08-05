@@ -81,12 +81,12 @@ const Lot = ({
     });
   }, []);
 
-  const animateAddingPrice = () => {
+  const animateAddingPrice = (animationClassName) => {
     const priceInputClasslist = priceInputRef.current.classList;
-    
-    priceInputClasslist.add('added-value-animation');
-    setTimeout(() => priceInputClasslist.remove('added-value-animation'), 500);
-  }
+
+    priceInputClasslist.add(animationClassName);
+    setTimeout(() => priceInputClasslist.remove(animationClassName), 500);
+  };
 
   const onNameChange = (e) => {
     setIsChangingLot(true);
@@ -101,7 +101,10 @@ const Lot = ({
 
   const onAddPriceChange = (e) => {
     setIsChangingLot(true);
-    if (isNaN(e.target.value)) return;
+    const valueLength = e.target.value.length;
+    const isFirstCharIsMinus = valueLength === 1 && e.target.value.charAt(valueLength - 1) === '-';
+
+    if (isNaN(e.target.value) && !isFirstCharIsMinus) return;
     setAddPrice(e.target.value);
   };
 
@@ -109,9 +112,15 @@ const Lot = ({
 
   const updateValues = () => {
     setIsChangingLot(false);
-    const updatedPrice = Number(priceValue) + Number(addPriceValue);
+    let updatedPrice;
 
-    if (updatedPrice > priceValue) animateAddingPrice()
+    if (addPriceValue.charAt(0) === '-') {
+      const number = addPriceValue.substr(1);
+      updatedPrice = Number(priceValue) - Number(number);
+    } else updatedPrice = Number(priceValue) + Number(addPriceValue);
+
+    if (updatedPrice > priceValue) animateAddingPrice('added-value-animation');
+    if (updatedPrice < priceValue) animateAddingPrice('destruct-value-animation');
 
     setPrice(updatedPrice);
     setAddPrice('');
