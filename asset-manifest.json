@@ -1,21 +1,22 @@
 {
   "files": {
     "main.css": "/trashauction/static/css/main.bc258c93.chunk.css",
-    "main.js": "/trashauction/static/js/main.94e2127b.chunk.js",
-    "main.js.map": "/trashauction/static/js/main.94e2127b.chunk.js.map",
+    "main.js": "/trashauction/static/js/main.11f3da92.chunk.js",
+    "main.js.map": "/trashauction/static/js/main.11f3da92.chunk.js.map",
     "runtime-main.js": "/trashauction/static/js/runtime-main.8a9b7d79.js",
     "runtime-main.js.map": "/trashauction/static/js/runtime-main.8a9b7d79.js.map",
-    "static/js/2.fc13c8af.chunk.js": "/trashauction/static/js/2.fc13c8af.chunk.js",
-    "static/js/2.fc13c8af.chunk.js.map": "/trashauction/static/js/2.fc13c8af.chunk.js.map",
+    "static/js/2.f28023d1.chunk.js": "/trashauction/static/js/2.f28023d1.chunk.js",
+    "static/js/2.f28023d1.chunk.js.map": "/trashauction/static/js/2.f28023d1.chunk.js.map",
     "index.html": "/trashauction/index.html",
-    "precache-manifest.8acfa811fc2d92133bbe486575fbb3aa.js": "/trashauction/precache-manifest.8acfa811fc2d92133bbe486575fbb3aa.js",
+    "precache-manifest.6ca414a1f0d392bb735bf9fb4e65d818.js": "/trashauction/precache-manifest.6ca414a1f0d392bb735bf9fb4e65d818.js",
     "service-worker.js": "/trashauction/service-worker.js",
     "static/css/main.bc258c93.chunk.css.map": "/trashauction/static/css/main.bc258c93.chunk.css.map",
-    "static/js/2.fc13c8af.chunk.js.LICENSE.txt": "/trashauction/static/js/2.fc13c8af.chunk.js.LICENSE.txt",
+    "static/js/2.f28023d1.chunk.js.LICENSE.txt": "/trashauction/static/js/2.f28023d1.chunk.js.LICENSE.txt",
     "static/media/bg.svg": "/trashauction/static/media/bg.ac7c0690.svg",
     "static/media/bg.jpg": "/trashauction/static/media/bg.eb10c485.jpg",
     "static/media/delete.svg": "/trashauction/static/media/delete.eedf38f8.svg",
     "static/media/doubleup.svg": "/trashauction/static/media/doubleup.97b6b174.svg",
+    "static/media/download.svg": "/trashauction/static/media/download.9203d649.svg",
     "static/media/pause.svg": "/trashauction/static/media/pause.db1c4442.svg",
     "static/media/play.svg": "/trashauction/static/media/play.0ad03614.svg",
     "static/media/stop.svg": "/trashauction/static/media/stop.a081961b.svg",
@@ -25,8 +26,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.8a9b7d79.js",
-    "static/js/2.fc13c8af.chunk.js",
+    "static/js/2.f28023d1.chunk.js",
     "static/css/main.bc258c93.chunk.css",
-    "static/js/main.94e2127b.chunk.js"
+    "static/js/main.11f3da92.chunk.js"
   ]
 }
