@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "f59634b93677bdddbbac2fdd6946cf28",
+    "revision": "c03f22a545e82a7f49d3e05797f88fcf",
     "url": "/trashauction/index.html"
   },
   {
-    "revision": "50f19083aaf478bc510d",
-    "url": "/trashauction/static/css/main.0bfe200c.chunk.css"
+    "revision": "6759e004a1a6cad42cfb",
+    "url": "/trashauction/static/css/main.9a956175.chunk.css"
   },
   {
     "revision": "cfeae2bfddfc5d359f95",
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/trashauction/static/js/2.f28023d1.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "50f19083aaf478bc510d",
-    "url": "/trashauction/static/js/main.5daf1596.chunk.js"
+    "revision": "6759e004a1a6cad42cfb",
+    "url": "/trashauction/static/js/main.c57f3c24.chunk.js"
   },
   {
     "revision": "f093b5cf523383e6b570",
