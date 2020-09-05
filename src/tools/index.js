@@ -17,3 +17,14 @@ export const formatTime = time => {
 };
 
 export const generateId = () => `f${(~~(Math.random()*1e8)).toString(16)}`
+
+export const downloadCsvFile = (csv) => {
+  const encodedUri = encodeURI(csv);
+
+  const link = document.createElement("a");
+  link.setAttribute("href", encodedUri);
+  link.setAttribute("download", `auction_lots (${new Date().toLocaleString()}).csv`);
+  document.body.appendChild(link); 
+  link.click();
+  document.body.removeChild(link);
+}

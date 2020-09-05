@@ -8,6 +8,25 @@
   transform: scale(1);
 }
 
+.csv-popup-enter {
+  opacity: 0;
+  transform: scale(.9);
+}
+.csv-popup-enter-active {
+  opacity: 1;
+  transition: 200ms ease;
+  transform: scale(1);
+}
+
+.csv-popup-exit {
+  opacity: 1;
+}
+.csv-popup-exit-active {
+  opacity: 0;
+  transform: scale(.9);
+  transition: 200ms ease;
+}
+
 .destruct-value-animation {
   animation: destruct-value-animation .5s ease-out;
 }
