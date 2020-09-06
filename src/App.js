@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { CSSTransition } from 'react-transition-group';
 import styled, { createGlobalStyle } from 'styled-components';
 import ReactTooltip from 'react-tooltip';
 import bg from './img/bg.jpg';
@@ -27,11 +28,11 @@ const BlackCover = styled.div`
   position: fixed;
   width: 100%;
   height: 100%;
-  background-color: ${({isActive}) => isActive ? 'rgba(0,0,0,.6)' : 'transparent'};
+  background-color: ${({ isActive }) => (isActive ? 'rgba(0,0,0,.6)' : 'transparent')};
   top: 0;
   left: 0;
   z-index: -1;
-`
+`;
 
 const SettingsButtons = styled.div`
   position: fixed;
@@ -105,6 +106,26 @@ const RemoveBgBtn = styled.div`
   }
 `;
 
+const WinnerAlertWrapper = styled.div`
+  bottom: 0;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  height: 20%;
+  align-items: center;
+  font-size: 38px;
+  position: fixed;
+  text-align: center;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 1000;
+  font-weight: 400;
+`;
+
+const WinnerAlertText = styled.div`
+  padding: 100px;
+`;
+
 const App = () => {
   const [lots, changeLots] = useState([
     {
@@ -123,20 +144,24 @@ const App = () => {
   const [isChangeBgActive, setIsChangeBgActive] = useState(false);
   const [bgInputValue, setBgInputValue] = useState(bgFromLs);
 
+  const [isWinnerAlertVisible, setIsWinnerAlertVisible] = useState(false);
+
   useEffect(() => {
     document.addEventListener('click', (e) => {
       const path = e.path || (e.composedPath && e.composedPath());
 
-      const isClickedOut =
-        path.find((element) => element.id === 'settings-wrapper') === undefined;
+      const isClickedOut = path.find((element) => element.id === 'settings-wrapper') === undefined;
       if (isChangeBgActive && isClickedOut) setIsChangeBgActive(false);
     });
   }, [isChangeBgActive]);
 
   useEffect(() => {
-    console.log('%cЧувак, ты думал что-то здесь будет? О, нет.', "color: #fff; font-size: 26px;")
-    console.log('%cИсходнный код: https://github.com/zhukosvinka/trashauction/tree/master', "color: #fff; font-size: 26px;")
-  }, [])
+    console.log('%cЧувак, ты думал что-то здесь будет? О, нет.', 'color: #fff; font-size: 26px;');
+    console.log(
+      '%cИсходнный код: https://github.com/zhukosvinka/trashauction/tree/master',
+      'color: #fff; font-size: 26px;',
+    );
+  }, []);
 
   const toggleTicker = () => setIsShowTicker((prevState) => !prevState);
 
@@ -150,15 +175,24 @@ const App = () => {
   const clearBgInputValue = () => {
     localStorage.setItem('backgroundUrl', '');
     setBgInputValue('');
-  }
+  };
+
+  const closeWinnerPopup = () => setIsWinnerAlertVisible(false);
+
+  const onTimeEnd = () => {
+    setIsWinnerAlertVisible(true);
+    setTimeout(() => {
+      setIsWinnerAlertVisible(false);
+    }, 15000);
+  };
 
   return (
     <>
       <GlobalStyle bgValue={bgInputValue} />
-      <BlackCover isActive={bgInputValue !== ''}/>
+      <BlackCover isActive={bgInputValue !== ''} />
       <ReactTooltip />
       {isShowTicker && <TopTicker isChangingLot={isChangingLot} lots={lots} />}
-      <Header setIsShowTicker={setIsShowTicker} />
+      <Header onTimeEnd={onTimeEnd} setIsShowTicker={setIsShowTicker} />
       <LotsList setIsChangingLot={setIsChangingLot} changeLots={changeLots} lots={lots} />
       <SettingsButtons id="settings-wrapper">
         {isChangeBgActive && (
@@ -176,14 +210,14 @@ const App = () => {
         <BgChange
           onClick={toggleBgChangeState}
           data-place="left"
-          data-effect='solid'
+          data-effect="solid"
           data-tip="Сменить фон"
           isActive={isChangeBgActive}
           src={bgIcon}
         />
         <ToggleTicker
           data-place="left"
-          data-effect='solid'
+          data-effect="solid"
           data-tip={isShowTicker ? 'Убрать бегущую строку' : 'Показать бегущую строку'}
           isActive={isShowTicker}
           onClick={toggleTicker}
@@ -191,6 +225,19 @@ const App = () => {
           src={tickerIcon}
         />
       </SettingsButtons>
+      <CSSTransition
+        unmountOnExit
+        mountOnEnter
+        in={isWinnerAlertVisible}
+        timeout={800}
+        classNames="winner-alert"
+      >
+        <WinnerAlertWrapper onClick={closeWinnerPopup}>
+          <WinnerAlertText>
+            Кажется, <b>«{lots[0].name}»</b> одержал победу!
+          </WinnerAlertText>
+        </WinnerAlertWrapper>
+      </CSSTransition>
     </>
   );
 };

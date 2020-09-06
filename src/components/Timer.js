@@ -46,7 +46,7 @@ const TimerBtn = styled.img`
 
 const interval = 10;
 
-const Timer = ({ initialTime }) => {
+const Timer = ({ initialTime, onTimeEnd }) => {
   const [isRunning, setIsRunning] = useState(false);
   const [prevTime, setPrevTime] = useState(null);
   const [currentMs, setCurrentMs] = useState(initialTime);
@@ -67,6 +67,7 @@ const Timer = ({ initialTime }) => {
 
       if (newMs <= 10) {
         stopTimer();
+        onTimeEnd()
       } else changeTime(newMs);
     },
     isRunning ? interval : null,
