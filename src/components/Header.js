@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import Timer from './Timer';
 
+const TIMER_INITIAL_TIME = 1500000; //25s
+
 const StyledHeader = styled.header`
   font-size: 30px;
   justify-content: space-between;
@@ -44,7 +46,7 @@ const Header = ({ onTimeEnd }) => {
       <Buyout htmlFor="bayout">
         Выкуп: <BayoutInput id="bayout" onChange={onChangeHandler} value={value} />
       </Buyout>
-      <Timer onTimeEnd={onTimeEnd} initialTime={5000} />
+      <Timer onTimeEnd={onTimeEnd} initialTime={TIMER_INITIAL_TIME} />
     </StyledHeader>
   );
 };
