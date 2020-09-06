@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/trashauction/static/css/main.c963b2aa.chunk.css",
-    "main.js": "/trashauction/static/js/main.86b78f33.chunk.js",
+    "main.css": "/trashauction/static/css/main.f0d92d6e.chunk.css",
+    "main.js": "/trashauction/static/js/main.22f51d04.chunk.js",
     "runtime-main.js": "/trashauction/static/js/runtime-main.8a9b7d79.js",
-    "static/js/2.f28023d1.chunk.js": "/trashauction/static/js/2.f28023d1.chunk.js",
+    "static/js/2.ffd02415.chunk.js": "/trashauction/static/js/2.ffd02415.chunk.js",
     "index.html": "/trashauction/index.html",
-    "precache-manifest.a9ebae27d1d952fc9fddee66f75fb03d.js": "/trashauction/precache-manifest.a9ebae27d1d952fc9fddee66f75fb03d.js",
+    "precache-manifest.906d152fba86526a4694ecdc4dba8ff0.js": "/trashauction/precache-manifest.906d152fba86526a4694ecdc4dba8ff0.js",
     "service-worker.js": "/trashauction/service-worker.js",
-    "static/js/2.f28023d1.chunk.js.LICENSE.txt": "/trashauction/static/js/2.f28023d1.chunk.js.LICENSE.txt",
+    "static/js/2.ffd02415.chunk.js.LICENSE.txt": "/trashauction/static/js/2.ffd02415.chunk.js.LICENSE.txt",
     "static/media/bg.svg": "/trashauction/static/media/bg.ac7c0690.svg",
     "static/media/bg.jpg": "/trashauction/static/media/bg.eb10c485.jpg",
     "static/media/delete.svg": "/trashauction/static/media/delete.eedf38f8.svg",
@@ -22,8 +22,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.8a9b7d79.js",
-    "static/js/2.f28023d1.chunk.js",
-    "static/css/main.c963b2aa.chunk.css",
-    "static/js/main.86b78f33.chunk.js"
+    "static/js/2.ffd02415.chunk.js",
+    "static/css/main.f0d92d6e.chunk.css",
+    "static/js/main.22f51d04.chunk.js"
   ]
 }
