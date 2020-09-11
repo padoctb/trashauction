@@ -83,14 +83,14 @@ const Timer = ({ initialTime, onTimeEnd }) => {
     const increaseNumber = Number(e.target.getAttribute('data-increase-number'));
     const newMs = currentMs + 60000 * increaseNumber;
 
-    changeTime(newMs);
+    requestAnimationFrame(() => changeTime(newMs))
   };
 
   const decreaseMinute = () => {
     if (currentMs <= 60000) return;
     const newMs = currentMs - 60000;
 
-    changeTime(newMs);
+    requestAnimationFrame(() => changeTime(newMs))
   };
 
   const stopTimer = () => {
@@ -103,6 +103,7 @@ const Timer = ({ initialTime, onTimeEnd }) => {
       <TimeleftWrapper>
         <div>
           <TimerBtn
+            draggable='false'
             onClick={handleTime}
             className="timer-btn"
             alt="play"
@@ -113,7 +114,7 @@ const Timer = ({ initialTime, onTimeEnd }) => {
           {timeleft && `${timeleft.minutes}:${timeleft.seconds}:${timeleft.milliseconds}`}
         </TimeleftText>
         <div>
-          <TimerBtn onClick={stopTimer} className="timer-btn" alt="stop" src={stopIcon} />
+          <TimerBtn draggable='false' onClick={stopTimer} className="timer-btn" alt="stop" src={stopIcon} />
         </div>
       </TimeleftWrapper>
       <TimeleftControl>
@@ -123,6 +124,7 @@ const Timer = ({ initialTime, onTimeEnd }) => {
           className="timer-btn"
           alt="timeup"
           src={timeUp}
+          draggable='false'
         />
         <TimerBtn
           onClick={increaseMinute}
@@ -130,8 +132,9 @@ const Timer = ({ initialTime, onTimeEnd }) => {
           className="timer-btn"
           alt="timeupx2"
           src={timeUpx2}
+          draggable='false'
         />
-        <TimerBtn onClick={decreaseMinute} className="timer-btn" alt="timedown" src={timeDown} />
+        <TimerBtn draggable='false' onClick={decreaseMinute} className="timer-btn" alt="timedown" src={timeDown} />
       </TimeleftControl>
     </TimerWrapper>
   );
