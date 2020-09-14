@@ -1,3 +1,10 @@
+.timeleft-copy {
+  position: absolute;
+  left: 50px;
+  animation: timeleft-copy-animation 1s ease-out;
+  animation-fill-mode: forwards;
+}
+
 .winner-alert-enter {
   opacity: 0;
   transform: translateY(1000px);
@@ -48,6 +55,17 @@
 
 .destruct-value-animation {
   animation: destruct-value-animation .5s ease-out;
+}
+
+@keyframes timeleft-copy-animation {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
 }
 
 @keyframes destruct-value-animation {

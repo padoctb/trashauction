@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
 import { useInterval } from '../tools/hooks';
 import { formatTime } from '../tools';
@@ -52,6 +52,8 @@ const Timer = ({ initialTime, onTimeEnd }) => {
   const [currentMs, setCurrentMs] = useState(initialTime);
   const [timeleft, setTimeleft] = useState(formatTime(initialTime));
 
+  const timeleftTextRef = useRef(null);
+
   const changeTime = (ms) => {
     const newTime = formatTime(ms);
     setPrevTime(Date.now());
@@ -59,16 +61,32 @@ const Timer = ({ initialTime, onTimeEnd }) => {
     setTimeleft(newTime);
   };
 
+  const endTimeAnimate = () => {
+    const timeleftText = timeleftTextRef.current;
+    const timeleftTextParent = timeleftText.parentNode;
+    const timeleftTextCopy = timeleftText.cloneNode(true);
+
+    timeleftTextCopy.className = 'timeleft-copy';
+
+    timeleftTextParent.append(timeleftTextCopy);
+
+    setTimeout(() => timeleftTextCopy.remove(), 1200); //1.2s - transition time
+  }
+
+  const endTimeHandler = () => {
+    stopTimer();
+    endTimeAnimate()
+    onTimeEnd();
+  }
+
   useInterval(
     () => {
       let prev = prevTime ? prevTime : Date.now();
       let diffTime = Date.now() - prev;
       let newMs = currentMs - diffTime;
 
-      if (newMs <= 10) {
-        stopTimer();
-        onTimeEnd()
-      } else changeTime(newMs);
+      if (newMs <= 10) endTimeHandler();
+      else changeTime(newMs);
     },
     isRunning ? interval : null,
   );
@@ -110,7 +128,7 @@ const Timer = ({ initialTime, onTimeEnd }) => {
             src={!isRunning ? playIcon : pauseIcon}
           />
         </div>
-        <TimeleftText>
+        <TimeleftText ref={timeleftTextRef}>
           {timeleft && `${timeleft.minutes}:${timeleft.seconds}:${timeleft.milliseconds}`}
         </TimeleftText>
         <div>
