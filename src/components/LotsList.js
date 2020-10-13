@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, memo } from 'react';
 import styled from 'styled-components';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import downloadIcon from '../img/icons/download.svg';
@@ -225,4 +225,4 @@ const LotsList = ({ lots, changeLots, setIsChangingLot }) => {
   );
 };
 
-export default LotsList;
+export default memo(LotsList);

@@ -90,7 +90,9 @@ const Lot = ({
 
   const onNameChange = (e) => {
     setIsChangingLot(true);
-    setName(e.target.value);
+    let value = e.target.value;
+    if(value) value = value[0].toUpperCase() + value.slice(1);
+    setName(value);
   };
 
   const onPriceChange = (e) => {
