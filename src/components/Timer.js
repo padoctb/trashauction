@@ -33,7 +33,6 @@ const TimeleftControl = styled.div`
 
 const TimerBtn = styled.img`
   cursor: pointer;
-  transition: 0.2s ease;
   opacity: 0;
   &:hover {
     opacity: 1 !important;

@@ -21,9 +21,11 @@ const Input = styled.input`
   outline: none;
   font-size: 22px;
   margin-left: 5px;
-  transition: 0.2s ease;
   width: 80px;
   &:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+  &:focus {
     background-color: rgba(255, 255, 255, 0.2);
   }
   &::placeholder {
@@ -48,10 +50,8 @@ const RemoveBtn = styled.img`
   margin-left: 10px;
   opacity: 0.6;
   cursor: pointer;
-  transition: 0.2s ease;
   &:hover {
     opacity: 1;
-    transform: scale(1.2);
   }
   &:active {
     transform: scale(0.9);

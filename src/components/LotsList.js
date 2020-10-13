@@ -31,10 +31,8 @@ const AddNewLotBtn = styled.div`
   float: right;
   margin-top: 8px;
   cursor: pointer;
-  transition: 0.2s ease;
   &:hover {
     background-color: rgba(249, 249, 249, 0.5);
-    transform: scale(1.2);
   }
   &:active {
     transform: scale(0.9);
@@ -53,12 +51,10 @@ const DownloadCsvBtn = styled.img`
   transform: ${({ isActive }) => (isActive ? 'scale(1.2)' : 'inherit')};
   margin-top: 11px;
   margin-right: 13px;
-  transition: 0.2s ease;
   cursor: pointer;
   position: relative;
   &:hover {
     opacity: 1;
-    transform: scale(1.2);
     color: #fff;
   }
   &:active {
